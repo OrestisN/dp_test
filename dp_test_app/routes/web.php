@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\http\Controllers\covidDataController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/coviddata',function(){
-    return view('show_data');
-});
+Route::get('/coviddata', [covidDataController::class,'england']
+
+);
+
+// Route::get('/coviddata',function(){
+//     return view('show_data');
+// });

@@ -19,5 +19,36 @@
                };
             ?>
         </div>
+        <div>
+            {{"1. Cases in england today:"}}
+            @foreach ($england as $item)
+            {{$item->newCasesByDate}}
+            @endforeach
+        </div>
+
+        <div>
+            {{"2. Cases in England do not correlate with aggregate from NHS regions as those point towards hospital admissions, not new cases."}}
+        </div>
+
+        
+        <div>
+            {{"3. Age-group with the highest cases is: "}}
+            {{$age_group}}
+        </div>
+
+        <div>
+            {{"4. Region with fewest cases is: "}}
+            {{$region_cases_least}}
+            {{"--All region areas have 0 cases"}}
+        </div>
+
+        
+        <div>
+            {{"5. Area Code E12000005 points to: "}}
+            @foreach ($area_code as $code)
+            {{$code->AreaName}}
+            @endforeach
+        </div>
+        
     </body>
 </html>

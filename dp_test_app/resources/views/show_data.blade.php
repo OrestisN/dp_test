@@ -33,7 +33,9 @@
         
         <div>
             {{"3. Age-group with the highest cases is: "}}
-            {{$age_group}}
+            @foreach ($age_group as $ages)
+            {{$ages->age}}
+            @endforeach
         </div>
 
         <div>

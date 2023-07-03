@@ -21,7 +21,6 @@ for line in sys.stdin:
     if json_covid_data['areaName'] != 'Northern Ireland' and json_covid_data['areaName'] != 'United Kingdom':
         data_list.append(json_covid_data)
 # checks for if there are new patients or newCasesBySpecimenDate are over 300
-# print(len(data_list)) #check
 data_list_new_patients = []
 for area in data_list:
     if area['areaType'] == 'region':
@@ -30,7 +29,6 @@ for area in data_list:
     elif area['areaType'] == 'nhsRegion':
        if area['newAdmissions'] > 0:
           data_list_new_patients.append(area)
-# print(len(data_list_new_patients))
 
 insert_list_region = []
 insert_list_patients = []
@@ -59,9 +57,9 @@ for data in data_list_new_patients:
             new_patients_row.append([data['areaName'],"N/A", p["age"], p["rate"], p["value"]])
         new_region_row.append("N/A")
         new_region_row.append("N/A")
-        #print(data['cumAdmissionsByAge'][0]['age'])
     insert_list_region.append(new_region_row)
     insert_list_patients.extend(new_patients_row)
+
 # check lengths
 print(len(insert_list_region))
 print(len(insert_list_patients))
@@ -84,8 +82,3 @@ sql = "INSERT INTO covid_region_data(areaType, areaName, areaCode, date, newCase
 mycursor.execute(sql, ["region", "England","E92000001","2022-12-07",0,0,0,0 ])
 mydb.commit()
 print(mycursor.rowcount, "England was inserted.")
-
-# sql = "INSERT INTO covid_region_data(areaType, areaName, areaCode, date, newCasesByDate, newCumCasesByDate, cumMaleCases, cumFemaleCases) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
-# mycursor.execute(sql, ["region", "Scotland","S92000003","2022-12-07",1933,2131615,0,0 ])
-# mydb.commit()
-# print(mycursor.rowcount, "Scotland  was inserted.")

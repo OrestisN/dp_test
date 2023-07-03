@@ -24,3 +24,7 @@ Route::get('/coviddata', [covidDataController::class,'england']
 // Route::get('/coviddata',function(){
 //     return view('show_data');
 // });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
